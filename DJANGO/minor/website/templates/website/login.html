@@ -1,0 +1,98 @@
+{% extends 'website/basic.html' %}
+
+{% block title%} Sign UP {% endblock %}
+
+
+
+
+        {% block homeurl %} "\"{% endblock %}
+        {% block abouturl %} "\about/" {% endblock %}
+        {% block contacturl %} "\contact/" {% endblock %}
+
+
+	
+
+{% block css %}
+
+#tab{
+    font-size:18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn1 {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  margin-left:3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn1:hover {
+  background-color: RoyalBlue;
+}
+
+
+}
+
+{% endblock %}
+
+
+{% block body %}
+
+    {% load static%}
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'front/css/style.css' %}">
+
+    <div style="padding:90px 0;background-image: url({% static 'front/images/background.jpg' %});" class="main" bgcolor="red">
+
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'front/images/img_login.jpg' %}" alt="sing up image"></figure>
+                        <a href="\signup/" class="signup-image-link"><b><font color="green" size="5">Create an account</font></b></a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 style="color:red" class="form-title">Sign in</h2>
+                        <form action="\login/" method="POST" class="register-form" id="login-form">
+                                                
+                            {% csrf_token %}
+                        
+                            <div class="form-group">
+                                <label><i class="material-icons">face</i></label>
+                                <input id="tab" type="number" name="number" required placeholder="Your Mobile Number"/>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="material-icons">lock</i></label>
+                                <input id="tab" type="password" name="passw"  required placeholder="Password"/>
+                            </div>
+                            
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="tab" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label"><b><font color="red" size="3">Or login with</font></b></span>
+							
+                            <ul class="socials">
+                                <button style="background:#dd4b39" class="btn btn1"><i class="fa fa-google fa-fw"></i></button>
+                                <button style="background:#3B5998" class="btn btn1"><i class="fa fa-facebook fa-fw"></i></button>
+                                <button style="background:#55ACEE" class="btn btn1"><i class="fa fa-twitter fa-fw"></i></button>
+								
+                            </ul>
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+	
+    	
+{% endblock %}

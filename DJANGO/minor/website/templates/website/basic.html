@@ -1,0 +1,257 @@
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title%} {% endblock %}</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+   {% block css %} {% endblock %}
+
+  
+#tab{
+    font-size:18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.icon{
+	font-size:40px;
+	color:white;
+}
+
+.modal-content{
+    border-radius:20px;
+    background-image:url('https://www.freevector.com/uploads/vector/preview/19202/5.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    width:350px;
+    height:auto;
+}
+
+.page-footer{
+    background-image:url('https://images.unsplash.com/photo-1535443274868-756b0f070b6e?ixlib=rb-1.2.1&w=1000&q=80');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+#profilebtn:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,15,20,0.2), 0 6px 20px 0 rgba(0,15,20,0.19);
+	background-color:red;
+}
+
+#profilebtn{
+	background-color:blue;
+	width:100%;
+	color:white;
+	padding-top:20px;
+	border-radius:25px;
+	font-size:
+	
+}
+
+.modal.fade:not(.in).right .modal-dialog {
+    -webkit-transform: translate3d(25%, 0, 0);
+    transform: translate3d(130%, 0, 0);
+}
+
+#text{
+font-weight:bold;
+font-size:18px;
+margin-left:8px;
+color:white;
+}
+
+
+</style>
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-3 pb-3">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="navbar-brand"> Welcome</div>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item {% block homeactive %} {% endblock %}">
+        <a id="tab" class="nav-link" href={% block homeurl %} {% endblock %}>Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item {% block mealactive %} {% endblock %}">
+        <a id="tab" class="nav-link" href={% block mealurl %} {% endblock %}>Meal for you </a>
+      </li>
+      <li class="nav-item {% block aboutactive %} {% endblock %}">
+        <a id="tab"  class="nav-link" href={% block abouturl %} {% endblock %}>About Us</a>
+      </li>
+	  <li class="nav-item {% block contactactive %} {% endblock %}">
+        <a id="tab" class="nav-link" href={% block contacturl %} {% endblock %}>Contact</a>
+      </li>
+  {% if user.is_authenticated %}
+      <li class="nav-item {% block orderactive %} {% endblock %}">
+        <a id="tab" class="nav-link" href={% block orderurl %} {% endblock %}>My Orders</a>
+      </li>
+  {% endif %}
+	  </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button id="tab" class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    
+    {% if user.is_authenticated %}  
+    <div role="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger mr-4 ml-2">   
+            <font id="tab">{{request.user.first_name}} {{request.user.last_name}}</font>
+    </div>
+    
+    {% else %}
+	<a role="button" id="tab" class="nav-link  btn btn-danger mx-2 my-2 my-sm-0" href="\login/"> Login </a>
+	<a role="button" id="tab" class="nav-link  btn btn-danger my-2 my-sm-0" href="\signup/"> SignUp </a>
+          
+    {% endif %}
+  </div>
+
+</nav>
+
+
+
+  <!-- Modal -->
+   <!-- profile start -->
+  <div class="modal fade right" style="margin-top:90px;" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" >	
+        <div class="modal-body">
+			<div class="text-center"><img class="rounded-circle" src="{{ image }}" style="width:120px;height:120px"></div>
+			<hr>
+			<p id="text">Email : {{request.user.email}}</p>
+			<p id="text">Name : {{request.user.first_name}} {{request.user.last_name}}</p>
+			
+			<p id="text">Phone : {{request.user}}</p>
+			<form action="\create_profile/">
+			{% csrf_token %}
+    			<div><input id="profilebtn" class="p-2 my-2" type="button" onclick="window.location.href = '\\create_profile/';" value="Edit profile"></div>
+			</form>
+			<form action="\logout/" method="post">
+			{% csrf_token %}
+    			<div><input id="profilebtn" class="p-2 my-1" type="submit" value="Logout"></div>
+    		</form>
+        </div>
+      </div>     
+    </div>
+  </div>
+  <!-- profile end -->
+
+{% for message in messages %}
+
+<div class="alert alert-{{message.tags}} mb-0 alert-dismissible fade show" role="alert">
+  <font style="font-size:18px"> <strong>Message: </strong> {{message}}</font>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor%}
+
+    {% block body %} {% endblock %}
+    
+    
+
+
+<footer class="page-footer font-small stylish-color-dark">
+
+  <div style="background-image:url('https://images.unsplash.com/photo-1535443274868-756b0f070b6e?ixlib=rb-1.2.1&w=1000&q=80');background-repeat:no-repeat;background-size:cover;" class="container text-center text-md-left">
+
+    <div class="row">
+
+      <div class="col-md-4 mx-auto">
+        <h5 style="color:white" class="font-weight-bold text-uppercase mt-3 mb-4">Meal Recommendation System</h5>
+        <p id="tab" style="color:yellow">Here we will recommend best food for you which is beneficial for your health.</p>
+      </div>
+	  
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 mx-auto">
+        <u style="color:white"><h5 style="color:red" class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+</u>
+        <ul class="list-unstyled">
+          <li>
+            <a id="tab" style="color:white" href="\">Home</a>
+          </li>
+          <li>
+            <a style="color:white" id="tab" href="\signup/">Signup</a>
+          </li>
+          <li>
+            <a style="color:white" id="tab" href="\login/">Login</a>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <div class="col-md-2 mx-auto">
+			<u style="color:white"><h5 style="color:red" class="font-weight-bold text-uppercase mt-3 mb-4">More</h5>
+			</u>
+			<ul class="list-unstyled">
+			  <li>
+				<a style="color:white" id="tab" href="\about/">About Us</a>
+			  </li>
+			  <li>
+				<a style="color:white" id="tab" href="\recommend/">Meal For You</a>
+			  </li>
+			</ul>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <div class="col-md-2 mx-auto">
+
+        <u style="color:white"><h5 style="color:red" class="font-weight-bold text-uppercase mt-3 mb-4"> Contact Us </h5>
+</u>
+        <ul class="list-unstyled">
+          <li>
+            <font style="color:white">Phone : 0731 154963</font>
+          </li>
+          <li>
+            <font style="color:white">Email : help@gmail.in</font>
+          </li>
+          <li>
+            <font style="color:white">City : Indore India</font>
+          </li>
+        </ul>
+
+      </div>
+      
+    </div>
+    <div class="text-center p-4">
+          <a class="btn-floating btn-fb mx-1">
+            <i class="icon fa fa-facebook"> </i>
+          </a>
+          <a class="btn-floating btn-tw mx-1">
+            <i class="icon fa fa-twitter"> </i>
+          </a>
+          <a class="mx-1">
+            <i class="icon fa fa-google fa-fw"> </i>
+          </a>
+          <a class="btn-floating btn-li mx-1">
+            <i class="icon fa fa-linkedin"> </i>
+          </a>
+    </div>
+  </div>
+
+  <!-- Social buttons -->
+
+</footer>
+<!-- Footer -->
+
+</body>
+</html>

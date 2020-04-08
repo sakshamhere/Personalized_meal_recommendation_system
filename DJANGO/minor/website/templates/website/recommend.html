@@ -1,0 +1,155 @@
+
+{% extends 'website/basic.html' %}
+
+{% block title%} Recommendation {% endblock %}
+  
+
+ {% block css %} 
+
+ input{
+ background-color:green;
+ margin-bottom:10px;
+ color:white;
+ }
+ .col{
+ background-color:white;
+ }
+ 
+ pre{
+ font-size:18px;
+ font-family:bold;
+ color:red;
+ }
+ 
+ body{
+     background-image:url('https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+     background-repeat:no-repeat;
+     background-size:cover;
+ }
+ 
+ {% endblock %}
+
+        {% block homeurl %} "\"{% endblock %}
+        {% block abouturl %} "\about/" {% endblock %}
+        {% block contacturl %} "\contact/" {% endblock %}
+        {% block mealurl %} "" {% endblock %}
+        {% block orderurl %} "\order/" {% endblock %}
+        
+        {% block mealactive %} active {% endblock %}
+
+   
+{% block body %}
+
+
+<div style="background-color:white" class="container mb-5 pb-5 pt-5 mt-5">
+<h1 class="text-center" style="color:red">Recommendations For You</h1>
+<form id="myForm" action="\buy/" method="post">
+{% csrf_token %}
+    <input id="inpt" style="display:none" type="text" name="product_buy">
+</form>
+<div id="purchasebtn" style="visibility:hidden" class="text-right"><button style="width:25%;font-size:20px" class="btn btn-primary p-2" onclick="submit()">Save All Purchases</button></div>
+
+{% load static %}
+<div class="row mx-2 my-4">
+
+{% for (a,id,n,c,sc,vn,r,nt,p,b) in data %}
+
+    <div style="border:solid" class="col-md-3 mb-2">
+    <table>
+        <tr>
+            <td><h2 id="name{{ id }}" class="my-3" style="color:blue">{{n|title}}</h2></td> 
+       </tr>
+        <tr>
+            <td><h5 style="color:red">Category :- {{c}}</h5></td>
+        </tr>
+        <tr>
+            <td><p><pre style="color:navy;font-size:20px">{{sc}}               {{nt}}</pre></p></td> 
+       </tr>
+        <tr>
+            <td>
+        		{% if vn == 'veg' %}
+            		<img style="width:50px;height:50px" src="{% static 'front/images/veg.jpg'%}"><font style="font-weight:bold;font-size:17px;color:blue">   Veg</font>
+            	{% else %}
+                	<img style="width:50px;height:50px" src="{% static 'front/images/nonveg.jpg'%}"><font style="font-weight:bold;font-size:17px;color:blue">Non-Veg</font>
+                {% endif %}
+           </td>
+        </tr>    
+        <tr>
+             <td><pre style="color:navy;font-size:20px"> Rate :- {{r}}       Price:- {{p}}</pre> </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div>
+                        <button style="display:none;"  id="cancel-{{id}}" class="cancel btn btn-danger mb-3" value="{{ id }}">Cancel</button>
+                        <button id="buy-{{id}}" class="buy btn btn-success mb-3" value="{{ id }}">Buy it</button>
+                </div>
+            </td>
+        </tr>
+        
+    </table>
+	</div>
+
+{% endfor %}
+</div>
+  
+</div>
+
+<script>
+
+function submit() 
+{
+      let sum = "";
+      for (let salary of Object.values(ids)) {
+        sum = sum + salary+" ";
+      }   
+      console.log(sum);
+      
+      document.getElementById("inpt").value = sum;
+      
+      document.getElementById("myForm").submit();
+      
+}
+
+
+$('.cancel').click(function(){
+
+    var idv= this.value.toString();
+    
+    document.getElementById("buy-"+idv).style.display="block";
+    document.getElementById("cancel-"+idv).style.display="none";
+    
+    delete ids[idv];
+
+    console.log(ids);
+    
+});
+
+if(sessionStorage.getItem("ids")==null){
+    var ids={};
+}
+
+$('.buy').click(function(){
+
+    var idv= this.value.toString();
+    
+    document.getElementById("buy-"+idv).style.display="none";
+    document.getElementById("cancel-"+idv).style.display="block";
+    
+    if(ids["id"]!=undefined){
+        ids[idv]=ids[idv];
+    }
+    else{   
+        ids[idv]=idv;
+    }
+   
+    console.log(ids);
+    
+    document.getElementById("purchasebtn").style.visibility="visible";
+       
+});
+        
+        
+</script>
+
+{% endblock %}

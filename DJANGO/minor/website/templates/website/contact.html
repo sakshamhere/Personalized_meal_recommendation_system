@@ -1,0 +1,83 @@
+
+{% extends 'website/basic.html' %}
+
+{% block title%} Contact Us {% endblock %}
+{% block css %}
+
+#tab{
+    font-size:16px;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+#div_border{
+    border:solid 1px red;
+}
+
+{% endblock %}
+
+        {% block homeurl %} "\"{% endblock %}
+        {% block abouturl %} "\about/" {% endblock %}
+        {% block contacturl %} ""{% endblock %}
+        {% block mealurl %} "\decider/" {% endblock %}
+        {% block orderurl %} "\order/" {% endblock %}
+        
+    {% block contactactive %} active {% endblock %}
+    
+{% block body %}
+
+
+	{% load static %}
+	
+	 
+	<link rel="stylesheet" type="text/css" href="{% static 'front/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'front/css/main.css' %}">
+
+	<div class="container-contact100" style="background-image:url(https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);background-repeat:no-repeat;background-size:cover;      ">
+		<div class="wrap-contact100">
+			
+			<div class="contact100-form-title" style="background-image: url({% static 'front/images/bg-02.jpg' %});">
+				<span>Contact Us</span>
+			</div>
+
+			<form action="\contact/" method="post" class="contact100-form validate-form">
+			{% csrf_token %}
+				<div id="div_border" class="wrap-input100 validate-input">
+					<input id="tab" class="input100" type="text" name="name" required placeholder="Full name">
+					<span class="focus-input100"></span>
+					<label class="label-input100" for="name">
+						<i class="material-icons">face</i>
+					</label>
+				</div>
+
+				<div id="div_border" class="wrap-input100 validate-input">
+					<input id="tab" class="input100" type="email" name="email" required placeholder="Eg. example@email.com">
+					<span class="focus-input100"></span>
+					<label class="label-input100" for="email">
+						<i class="material-icons">email</i>
+					</label>
+				</div>
+
+				<div id="div_border" class="wrap-input100 validate-input">
+					<input id="tab" class="input100" type="number" name="phone" required placeholder="Eg. +1 800 000000">
+					<span class="focus-input100"></span>
+					<label class="label-input100" for="phone">
+						<i class="material-icons">phone</i>
+					</label>
+				</div>
+
+				<div id="div_border" class="wrap-input100 validate-input">
+					<textarea id="tab" class="input100" name="message" required placeholder="Your comments...(At least 25 character)"></textarea>
+					<span class="focus-input100"></span>
+					<label class="label-input100 rs1" for="message">
+						<i class="material-icons">textsms</i>
+					</label>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">Send Now</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

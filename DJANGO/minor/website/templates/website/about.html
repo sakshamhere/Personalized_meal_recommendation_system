@@ -1,0 +1,201 @@
+
+{% extends 'website/basic.html' %}
+
+{% block title%} About Us {% endblock %}
+  
+ {% block css %} 
+
+body{
+background-image:url('https://i.pinimg.com/originals/e1/61/7a/e1617a3f08ea7aacbf158288137d9ffd.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+font-family: 'Open Sans', sans-serif;
+}
+
+
+
+*:hover{
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 14px;}
+h1 span{font-family: 'Libre Baskerville', serif; display:block; font-size:45px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
+h1 a{color:#131313; font-weight:bold;}
+
+/*Profile Card 1*/
+.profile-card-1 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  width: 80%;
+  color: #ffffff;
+  text-align: center;
+  height:300px;
+  border:none;
+}
+.profile-card-1 .background {
+  width:100%;
+  vertical-align: top;
+  opacity: 0.9;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+   -webkit-transform: scale(1.8);
+  transform: scale(2.8);
+}
+.profile-card-1 .card-content {
+  width: 100%;
+  padding: 15px 25px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+.profile-card-1 .profile {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  max-width: 100px;
+  opacity: 1;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+}
+.profile-card-1 h2 {
+  margin: 0 0 5px;
+  font-weight: 600;
+  font-size:25px;
+}
+.profile-card-1 h2 small {
+  display: block;
+  font-size: 15px;
+  margin-top:10px;
+}
+.profile-card-1 i {
+  display: inline-block;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    border: 1px solid #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    margin:0 5px;
+}
+.profile-card-1 .icon-block{
+    float:left;
+    width:100%;
+    margin-top:15px;
+}
+.profile-card-1 .icon-block a{
+    text-decoration:none;
+}
+
+.profile-card-1 i:hover {
+  background-color:#fff;
+  color:#2E3434;
+  text-decoration:none;
+}
+
+
+
+.main_box{
+margin-top:70px;
+margin-bottom:80px;
+}
+
+{% endblock %}
+
+
+        {% block homeurl %} "\"{% endblock %}
+        {% block abouturl %} "" {% endblock %}
+        {% block contacturl %} "\contact/" {% endblock %}
+        {% block mealurl %} "\decider/" {% endblock %}
+        {% block orderurl %} "\order/" {% endblock %}
+        
+        {% block aboutactive %} active {% endblock %}
+     
+{% block body %}
+
+
+{% load static %}
+
+
+
+<div class="container my-5">
+  <div class="row justify-content-between">
+    <div class="col-4">
+    		    <div class="card profile-card-1">
+    		        <img src="https://live.staticflickr.com/2147/2291430665_97b216bc37.jpg" alt="profile-sample1" class="background"/>
+    		        <img src="{% static 'front/images/saksham.jpg' %}" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+						<h2>Saksham Doshi<small>Engineer</small></h3>
+						<div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a>
+						</div>
+                    </div>
+                </div>
+    </div>
+
+
+    <div class="col-4" style="padding-top:120px">
+    		    <div class="card profile-card-1">
+    		        <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX12744737.jpg" alt="profile-sample1" class="background"/>
+    		        <img src="{% static 'front/images/rahul.jpg' %}" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+						<h2>Rahul Sariya<small>Engineer</small></h3>
+						<div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a>
+						</div>
+                    </div>
+                </div>
+    </div>
+    
+    
+    
+     <div class="col-4">
+    		    <div class="card profile-card-1">
+    		        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQFYvrIPKnjd_hLgWhbLsR_NWQ4EiRwQcixxN14Sn5CKC2HNcRl" alt="profile-sample1" class="background"/>
+    		        <img src="{% static 'front/images/rohit.png' %}" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+						<h2>Rohit Sisodiya<small>Engineer</small></h3>
+						<div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a>
+						</div>
+                    </div>
+                </div>
+		</div>
+    
+    
+    </div>
+  
+ 
+  <div class="row justify-content-between">
+        <div class="col-4">
+    		    <div class="card profile-card-1">
+    		        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQFYvrIPKnjd_hLgWhbLsR_NWQ4EiRwQcixxN14Sn5CKC2HNcRl" alt="profile-sample1" class="background"/>
+    		        <img src="{% static 'front/images/rishi.jpeg' %}" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+						<h2>Rishi Prajapati<small>Engineer</small></h3>
+						<div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a>
+						</div>
+                    </div>
+                </div>
+    </div>
+	
+        <div class="col-4">
+    		    <div class="card profile-card-1">
+    		        <img src="https://live.staticflickr.com/2147/2291430665_97b216bc37.jpg" alt="profile-sample1" class="background"/>
+    		        <img src="{% static 'front/images/rudraksh.jpeg' %}" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+						<h2>Rudraksh Sukla<small>Engineer</small></h3>
+						<div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a>
+						</div>
+                    </div>
+                </div>
+    </div>
+  
+</div>
+</div>
+
+ {% endblock %}

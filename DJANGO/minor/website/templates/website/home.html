@@ -1,0 +1,93 @@
+
+
+{% extends 'website/basic.html' %}
+
+{% block title%} Welcome {% endblock %}
+ 
+ {% block css %} 
+ 
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  
+  .carousel-item {
+  height: 65vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+{% load static %}
+body{
+background-image:url({% static 'front/images/background.jpg' %})
+}
+
+
+{% endblock %}
+
+
+        {% block homeurl %} ""{% endblock %}
+        {% block abouturl %} "about/" {% endblock %}
+        {% block contacturl %} "contact/"{% endblock %}
+        {% block mealurl %} "decider/" {% endblock %}
+        {% block orderurl %} "\order/" {% endblock %}
+        
+    {% block homeactive %} active {% endblock %}
+
+{% block body %}
+
+
+
+	<div id="demo" class="container carousel slide my-4" data-ride="carousel" data-interval="2500">>
+	  <!-- Indicators -->
+	  <ul class="carousel-indicators">
+		<li data-target="#demo" data-slide-to="0" class="active"></li>
+		<li data-target="#demo" data-slide-to="1"></li>
+		<li data-target="#demo" data-slide-to="2"></li>
+		<li data-target="#demo" data-slide-to="3"></li>
+	  </ul>
+	  
+	  <!-- The slideshow -->
+	  <div class="carousel-inner">
+		<div class="carousel-item active"  style="background-image: url('https://www.euractiv.com/wp-content/uploads/sites/2/2019/03/shutterstock_245119630.jpg')">
+    		<div class="align-bottom text-center" style="color:white;background-color:blue;width:100%;font-size:30px"> Healthy outside starts from the inside </div>
+		</div>
+		
+		<div class="carousel-item" style="background-image: url('https://www.health.harvard.edu/media/content/images/p3_MedDiet_W1806_gi667751254.jpg')">
+    		<div class="align-bottom text-center" style="color:white;background-color:blue;width:100%;font-size:30px"> Good nutrition will prevent 95 percent of all disease </div>		
+		</div>
+		
+		<div class="carousel-item" style="background-image: url('https://images.all-free-download.com/images/graphicthumb/fresh_fruit_picture_167130.jpg')">
+    		<div class="align-bottom text-center" style="color:white;background-color:blue;width:100%;font-size:30px"> The first wealth is health </div>		
+		</div>
+		
+		<div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80')">
+    		<div class="align-bottom text-center" style="color:white;background-color:blue;width:100%;font-size:30px"> Every time you eat is an opportunity to nourish your body </div>		
+		</div>
+		
+	  </div>
+	  
+	  <!-- Left and right controls -->
+	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+		<span class="carousel-control-prev-icon"></span>
+	  </a>
+	  <a class="carousel-control-next" href="#demo" data-slide="next">
+		<span class="carousel-control-next-icon"></span>
+	  </a>
+	</div>
+
+    <div class="container my-5 p-4">
+        <div class="jumbotron mx-5"  style="background-image:url('https://www.itl.cat/pngfile/big/0-7755_nature-pier-bridge-d-river-water-sunset-night.jpg');background-size:cover;background-repeat:no-repeat">
+          <h1 style="font-size:45px;color:white">Hello {{request.user.first_name}} {{request.user.last_name}}</h1>
+          <p style="font-size:25px;color:white">Healthy outside starts from inside, so we have best food suggestion for you, You should try it</p>
+          
+          <p><a class="btn btn-success btn-lg" href="\recommend/" role="button">Check Out</a></p>
+        </div>
+    </div>
+    
+ {% endblock %}

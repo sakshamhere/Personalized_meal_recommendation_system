@@ -1,0 +1,210 @@
+
+{% extends 'website/basic.html' %}
+
+{% block title%} Recommendation {% endblock %}
+  
+
+ {% block css %} 
+
+ input{
+ background-color:green;
+ margin-bottom:10px;
+ color:white;
+ }
+ .col{
+ background-color:white;
+ }
+ 
+ pre{
+ font-size:18px;
+ font-family:bold;
+ color:red;
+ }
+ 
+ body{
+     background-image:url('https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+     background-repeat:no-repeat;
+     background-size:cover;
+ }
+ 
+ {% endblock %}
+
+        {% block homeurl %} "\"{% endblock %}
+        {% block abouturl %} "\about/" {% endblock %}
+        {% block contacturl %} "\contact/" {% endblock %}
+        {% block mealurl %} "\decider/" {% endblock %}
+        {% block orderurl %} "" {% endblock %}
+        
+        {% block orderactive %} active {% endblock %}
+
+   
+{% block body %}
+
+
+<div style="background-color:white;min-height:450px" class="container mb-5 pb-5 pt-5 mt-5">
+<h1 class="text-center" style="color:red">Your Previous Orders</h1>
+<form id="myForm" action="\LikeRate/" method="post">
+{% csrf_token %}
+    <input id="inpt1" style="display:none" type="text" name="idsinp">
+    <input id="inpt2" style="display:none" type="text" name="likeinp">
+    <input id="inpt3" style="display:none" type="text" name="rateinp">
+</form>
+<div id="likeratebtn" style="visibility:hidden" class="text-right"><button style="width:25%;font-size:20px" class="btn btn-primary p-2" onclick="submit()">Save</button></div>
+
+<script>
+
+if(sessionStorage.getItem("like")==null){
+    var like={};
+}
+
+if(sessionStorage.getItem("rate")==null){
+    var rate={};
+}
+
+
+</script>
+
+{% load static %}
+<div class="row mx-2 my-4">
+
+{% for (a,id,n,c,sc,vn,r,nt,p,like,rate,date,b) in data %}
+
+    <script> 
+                 
+            like["{{id}}"]={{like}};
+            
+            rate["{{id}}"]={{rate}};  
+            
+    </script>
+    
+    <div style="border:solid" class="col-md-4 mb-2">
+    <table>
+        <tr>
+            <td><h2 id="name{{ id }}" class="my-3" style="color:blue">{{n|title}}</h2></td> 
+       </tr>
+        <tr>
+            <td><h5 style="color:red">Category :- {{c}}</h5></td>
+        </tr>
+        <tr>
+            <td><p><pre style="color:navy;font-size:20px">{{sc}}               {{nt}}</pre></p></td> 
+       </tr>
+        <tr>
+            <td>
+        		{% if vn == 'veg' %}
+            		<img style="width:50px;height:50px" src="{% static 'front/images/veg.jpg'%}"><font style="font-weight:bold;font-size:17px;color:blue">   Veg</font>
+            	{% else %}
+                	<img style="width:50px;height:50px" src="{% static 'front/images/nonveg.jpg'%}"><font style="font-weight:bold;font-size:17px;color:blue">Non-Veg</font>
+                {% endif %}
+           </td>
+        </tr>    
+        <tr>
+             <td><pre style="color:navy;font-size:20px"> Rate :- {{r}}       Price:- {{p}}</pre> </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <div class="row my-2">
+                    <div class="col">
+                                    <button id="like-{{id}}" class="like btn btn-success mb-3" value="{{ id }}">Like it</button>
+                                    <button  style="display:none" id="unlike-{{id}}" class="unlike btn btn-primary mb-3" value="{{ id }}">Unlike</button>
+                    </div>
+                    <div class="col"><button id="rate-{{id}}" class="rate btn btn-danger mb-2" value="{{ id }}">Rate Us</button></div>   
+                </div>
+                    <div style="font-size:17px;color:navy" class="container mb-3"> Order Date :- {{date}}</div>
+                      <div style="font-size:20px;color:#bd17a7;font-weight:bold" class="text-center" id="div-{{id}}"></div>   
+            </td>
+        </tr>
+        
+    </table>
+	</div>
+
+{% endfor %}
+</div>
+  
+</div>
+
+<script>
+
+function submit() 
+{
+
+    rid=Object.keys(like)
+    l=Object.values(like)
+    r=Object.values(rate)
+   
+    document.getElementById("inpt1").value=rid;
+    document.getElementById("inpt2").value=l;
+    document.getElementById("inpt3").value=r;
+    
+    document.getElementById("myForm").submit();
+}
+
+
+console.log(like);
+console.log(rate);
+
+$('.unlike').click(function(){
+
+    var idv= this.value.toString();
+    document.getElementById("unlike-"+idv).style.display="none"; 
+    document.getElementById("like-"+idv).style.display="block";   
+    
+    like[idv]=0;  
+    
+    console.log(like);
+      
+});
+
+
+$('.like').click(function(){
+
+    var idv= this.value.toString();
+    
+    document.getElementById("like-"+idv).style.display="none";
+    document.getElementById("unlike-"+idv).style.display="block";
+    
+    if(like["id"]!=undefined){
+        like[idv]=0;
+    }
+    else{   
+        like[idv]=1;
+    }
+    
+    console.log(like);   
+    document.getElementById("likeratebtn").style.visibility="visible";
+       
+});
+        
+  
+$('.rate').click(function(){
+
+    var idv= this.value.toString();
+   
+   x=prompt('Rate between 1 to 10','9')
+   var ratting = parseInt(x);
+   if(ratting){
+       if(ratting<=10){
+           if(ratting<=5){
+               rate[idv]=0;
+           }
+           else{
+               rate[idv]=1;
+           }
+    
+            document.getElementById("div-"+idv).innerHTML="You Rated : "+ratting+" star";
+            console.log(rate);   
+            document.getElementById("likeratebtn").style.visibility="visible";
+        }
+        else{
+             alert("should be between 1-10 value");
+        }
+   }
+   else{
+       alert("should be numeric value");
+   }
+       
+});
+               
+</script>
+
+{% endblock %}
