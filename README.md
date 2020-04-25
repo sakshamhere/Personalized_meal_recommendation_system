@@ -25,7 +25,7 @@ _The other model based method uses Matrix factorisation, decomposing the huge an
 
 ***************************************************************************************************************************************
 
-flow of project: 
+### flow of project: 
 
 1. Data collection - data is collected by web scraping (projects works on demo data).
 2. Data processing - data is processed and required attributes are added to make demo datasets.
