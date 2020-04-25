@@ -14,4 +14,4 @@ Hi , This is my college mini project based on python, the system recommends meal
 3. Disease or medical condition, if user have any (pregnancy ,diabetes , obesity etc ..)
 
 ## - Methodology 
-[test](https://www.google.com/imgres?imgurl=https%3A%2F%2Fmiro.medium.com%2Fmax%2F3630%2F1*rCK9VjrPgpHUvSNYw7qcuQ%402x.png&imgrefurl=https%3A%2F%2Ftowardsdatascience.com%2Fintroduction-to-recommender-systems-6c66cf15ada&tbnid=2l2bCLXd3jcrvM&vet=12ahUKEwjg-aa85oLpAhXYDLcAHYPLAlMQMygTegUIARC6Ag..i&docid=F3-_KKsJd0x1EM&w=1815&h=716&q=recommendation%20system&ved=2ahUKEwjg-aa85oLpAhXYDLcAHYPLAlMQMygTegUIARC6Ag)
+![test](https://www.google.com/imgres?imgurl=https%3A%2F%2Fmiro.medium.com%2Fmax%2F3630%2F1*rCK9VjrPgpHUvSNYw7qcuQ%402x.png&imgrefurl=https%3A%2F%2Ftowardsdatascience.com%2Fintroduction-to-recommender-systems-6c66cf15ada&tbnid=2l2bCLXd3jcrvM&vet=12ahUKEwjg-aa85oLpAhXYDLcAHYPLAlMQMygTegUIARC6Ag..i&docid=F3-_KKsJd0x1EM&w=1815&h=716&q=recommendation%20system&ved=2ahUKEwjg-aa85oLpAhXYDLcAHYPLAlMQMygTegUIARC6Ag)
