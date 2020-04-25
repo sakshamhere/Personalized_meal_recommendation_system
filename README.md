@@ -39,8 +39,8 @@ _The other model based method uses Matrix factorisation, decomposing the huge an
 - The project above is a very small implementation by k-nearest neigbor algorithm,
 - what more should be done ?
 
-The profile should get updated everytime on user's activity
-Matrix factorisation methods of collaborative filtering can be applied
+The profile should get updated everytime on user's activity,
+Matrix factorisation methods of collaborative filtering can be applied,
 further Single Value Decomposition can be applied 
 
 ### one should read:
