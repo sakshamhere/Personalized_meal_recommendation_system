@@ -30,6 +30,7 @@ Hi , This is my college mini project based on python for **learning purpose**, t
 - For Recommendation - **sklearn**
 
 
+### Future Scope - 
 Matrix factorisation methods of collaborative filtering can be applied,
 further Single Value Decomposition can be applied 
 
